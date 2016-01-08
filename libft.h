@@ -6,7 +6,7 @@
 /*   By: amineau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 13:21:26 by amineau           #+#    #+#             */
-/*   Updated: 2016/01/07 15:51:55 by amineau          ###   ########.fr       */
+/*   Updated: 2016/01/08 14:10:47 by amineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int				ft_memcmp(const void *s1, const void *s2, size_t n);
 void			ft_bzero(void *s, size_t n);
 int				ft_max(int *tab, size_t len);
 int				ft_min(int *tab, size_t len);
+int				ft_abs(int n);
 int				ft_isupper(int c);
 int				ft_islower(int c);
 int				ft_isalpha(int c);
