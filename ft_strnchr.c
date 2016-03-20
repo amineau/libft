@@ -1,20 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_abs.c                                           :+:      :+:    :+:   */
+/*   ft_strnchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amineau <amineau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/08 14:09:21 by amineau           #+#    #+#             */
-/*   Updated: 2016/02/27 21:35:35 by amineau          ###   ########.fr       */
+/*   Created: 2016/02/25 15:01:06 by amineau           #+#    #+#             */
+/*   Updated: 2016/02/25 15:03:30 by amineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-intmax_t	ft_abs(intmax_t n)
+char	*ft_strnchr(const char *s, int c, int n)
 {
-	if (n < 0)
-		n = -n;
-	return (n);
+	int	i;
+
+	i = 0;
+	while (s[i] && s[i] != c && i < n)
+		i++;
+	if (s[i] == c)
+		return ((char*)s + i);
+	else
+		return (NULL);
 }

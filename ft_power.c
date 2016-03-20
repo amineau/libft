@@ -1,20 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_abs.c                                           :+:      :+:    :+:   */
+/*   ft_power.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amineau <amineau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/08 14:09:21 by amineau           #+#    #+#             */
-/*   Updated: 2016/02/27 21:35:35 by amineau          ###   ########.fr       */
+/*   Created: 2016/02/26 02:57:38 by amineau           #+#    #+#             */
+/*   Updated: 2016/02/26 08:06:35 by amineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-intmax_t	ft_abs(intmax_t n)
+uintmax_t	ft_power(int nbr, int base)
 {
-	if (n < 0)
-		n = -n;
-	return (n);
+	int			i;
+	uintmax_t	res;
+
+	i = 0;
+	res = 1;
+	while (i++ < nbr)
+		res *= base;
+	return (res);
 }

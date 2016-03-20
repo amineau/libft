@@ -1,30 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strndup.c                                       :+:      :+:    :+:   */
+/*   ft_itoa_unsi.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amineau <amineau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/05 16:07:46 by amineau           #+#    #+#             */
-/*   Updated: 2016/01/06 10:14:50 by amineau          ###   ########.fr       */
+/*   Created: 2016/02/26 06:08:17 by amineau           #+#    #+#             */
+/*   Updated: 2016/03/17 18:07:08 by amineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strndup(const char *s1, size_t n)
+static int	nbrdigit(uintmax_t nbr)
 {
-	char	*s2;
-	size_t	i;
+	int pow;
 
-	if (!(s2 = (char*)malloc(sizeof(*s1) * (ft_strlen(s1) + 1))))
-		return (NULL);
-	i = 0;
-	while (s1[i] && i < n)
+	pow = 0;
+	while (nbr / 10 != 0)
 	{
-		s2[i] = s1[i];
-		i++;
+		nbr = nbr / 10;
+		pow++;
 	}
-	s2[i] = '\0';
-	return (s2);
+	return (pow + 1);
+}
+
+char		*ft_utoa(uintmax_t value)
+{
+	char	*str;
+	int		pow;
+	int		digit;
+	int		i;
+
+	i = 0;
+	pow = nbrdigit(value);
+	str = (char*)malloc(sizeof(char) * (pow + 1));
+	while (--pow >= 0)
+	{
+		digit = value / ft_power(pow, 10);
+		value %= ft_power(pow, 10);
+		str[i++] = digit + 48;
+	}
+	str[i] = '\0';
+	return (str);
 }
