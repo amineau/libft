@@ -6,13 +6,13 @@
 /*   By: amineau <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 13:21:26 by amineau           #+#    #+#             */
-/*   Updated: 2016/03/21 13:54:05 by amineau          ###   ########.fr       */
+/*   Updated: 2016/05/03 19:19:12 by amineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
-# define BUFF_SIZE 10
+# define BUFF_SIZE 100
 # include <unistd.h>
 # include <string.h>
 # include <stdlib.h>
@@ -72,6 +72,7 @@ int				ft_isprint(int c);
 int				ft_toupper(int c);
 int				ft_tolower(int c);
 int				ft_atoi(const char *str);
+long			ft_atol(const char *str);
 int				ft_atoi_base(const char *str, int base);
 void			ft_strclr(char *s);
 char			*ft_strnew(size_t size);

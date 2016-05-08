@@ -6,17 +6,21 @@
 /*   By: amineau <amineau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/04 10:54:48 by amineau           #+#    #+#             */
-/*   Updated: 2016/01/10 17:58:59 by amineau          ###   ########.fr       */
+/*   Updated: 2016/05/03 19:24:57 by amineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_endline(char *buf)
+static int	ft_endline(char *buf, char *line, int ret)
 {
 	int i;
 
 	i = 0;
+	if (ret == 0 && (!line || line[0] == '\0'))
+		return (0);
+	else if (ret == 0)
+		return (1);
 	while (buf[i])
 	{
 		if (buf[i] == '\n')
@@ -35,7 +39,7 @@ static int	ft_check_rest(char **rest, char **line)
 		if ((p = ft_strchr(*rest, '\n')))
 		{
 			*line = ft_strndup(*rest, p - *rest);
-			*rest = p + 1;
+			ft_memmove(*rest, p + 1, ft_strlen(p + 1) + 1);
 			return (1);
 		}
 		else
@@ -60,6 +64,7 @@ static char	*ft_trac(char *rest, char **buf)
 	if ((*buf)[i] == '\n')
 	{
 		end = i;
+		ft_strdel(&rest);
 		if (!(rest = ft_memalloc(sizeof(char) * (ft_strlen(*buf) - i))))
 			return (NULL);
 		while ((*buf)[i++])
@@ -68,6 +73,7 @@ static char	*ft_trac(char *rest, char **buf)
 		(*buf)[end] = '\0';
 		return (rest);
 	}
+	ft_strdel(&rest);
 	return (NULL);
 }
 
@@ -90,11 +96,11 @@ int			get_next_line(const int fd, char **line)
 		if ((ret = read(fd, buf, BUFF_SIZE)) == -1)
 			return (-1);
 		buf[ret] = '\0';
-		back = ft_endline(buf);
-		if (ret == 0)
-			back = 0;
+		back = ft_endline(buf, *line, ret);
 		rest = ft_trac(rest, &buf);
 		*line = ft_strclnjoin(*line, buf);
 	}
+	if (back == 0)
+		ft_strdel(&rest);
 	return (back);
 }
